@@ -29,6 +29,7 @@ const restaurantSchema = mongoose.Schema({
 // properties that are stored in the database. Here we use it
 // to generate a human readable string based on the address object
 // we're storing in Mongo.
+<<<<<<< HEAD
 restaurantSchema.virtual("addressString").get(function() {
   return `${this.address.building} ${this.address.street}`.trim();
 });
@@ -39,6 +40,14 @@ restaurantSchema.virtual("grade").get(function() {
     this.grades.sort((a, b) => {
       return b.date - a.date;
     })[0] || {};
+=======
+restaurantSchema.virtual('addressString').get(function() {
+  return `${this.address.building} ${this.address.street}`.trim();});
+
+// this virtual grabs the most recent grade for a restaurant.
+restaurantSchema.virtual('grade').get(function() {
+  const gradeObj = this.grades.sort((a, b) => {return b.date - a.date;})[0] || {};
+>>>>>>> feature/with-tests
   return gradeObj.grade;
 });
 
